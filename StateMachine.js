@@ -222,12 +222,13 @@ YaStateMachineJS = function(opt) {
             if (t.cond()) {
                 destCount++;
                 d = t.dest;
+                if (!opt.debug)break;
             }
         }
 
-        if (destCount > 1) {
+        if (opt.debug && destCount > 1) {
             console.log("ERROR : More than one destination is possible.");
-        } else if (d) {
+        } else if (opt.debug && d) {
             this.currentState.outing();
             this.currentState = d;
             this.currentState.entering();
