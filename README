@@ -1,0 +1,7 @@
+This is "yet another state machine" implementation.
+It's supposed to work with Firefox, Chromium or node.js.
+
+Just include StateMachine.js in your project.
+There a simple use case in TestingStateMachine.js
+
+There is still more tests to do and a substate machine working like a state.
