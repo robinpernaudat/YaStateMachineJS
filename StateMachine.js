@@ -228,7 +228,7 @@ YaStateMachineJS = function(opt) {
 
         if (opt.debug && destCount > 1) {
             console.log("ERROR : More than one destination is possible.");
-        } else if (opt.debug && d) {
+        } else if (d) {
             this.currentState.outing();
             this.currentState = d;
             this.currentState.entering();
