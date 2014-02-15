@@ -6,7 +6,7 @@
  *      clear && node -e "require('./StateMachine');require('./TestingStateMachine');testSateMachine();"
  *******************************************************************************/
 testSateMachine = function() {
-    s = new YaStateMachineJS({debug: false});
+    s = new YaStateMachineJS({});
     var stateInit = s.newState({
         do: function() {
             console.log("state action : do in the SM (state initial).");
@@ -24,11 +24,12 @@ testSateMachine = function() {
             console.log("state action : I'm \"state1\" and I entering().");
         },
         do: function() {
-            console.log("state action : I'm \"state1\" and I do(). ");
+            console.log("state action : I'm \"state1\" and I do(). My name is \""+this.data.name+"\" ");
         },
         ending: function() {
             console.log("state action : I'm \"state1\" and I ending().");
-        }
+        }, 
+        data:{name:"etat num 1"}
     });
     stateInit.newTransition(state1, function() {
         return true;
