@@ -70,7 +70,7 @@ YaStateMachineJS = function(opt) {
         };
 
         /**
-         * Set outing function. This function is called when the token leaving this state
+         * Set ending function. This function is called when the token leaving this state
          * @param {function} f
          */
         this.setEnding = function(f) {
@@ -78,7 +78,7 @@ YaStateMachineJS = function(opt) {
                 this.f_ending = f;
             } else {
                 this.f_ending = null;
-                console.log('ERROR : the outing() of a state must be a function !');
+                console.log('ERROR : the ending() of a state must be a function !');
             }
         };
 
@@ -88,8 +88,8 @@ YaStateMachineJS = function(opt) {
         if (o.do) {
             this.setDo(o.do);
         }
-        if (o.outing) {
-            this.setEnding(o.outing);
+        if (o.ending) {
+            this.setEnding(o.ending);
         }
         if (o.data) {
             this.setData(o.data);
@@ -108,7 +108,7 @@ YaStateMachineJS = function(opt) {
             if (this.f_entering)
                 this.f_entering();
         };
-        this.outing = function() {
+        this.ending = function() {
             if (this.f_ending)
                 this.f_ending();
         };
@@ -206,7 +206,7 @@ YaStateMachineJS = function(opt) {
      * This function stop the machine. The ending function is called if it exists.
      */
     this.stop = function() {
-        this.currentState.outing();
+        this.currentState.ending();
         this.reset();
     }
 
@@ -227,9 +227,9 @@ YaStateMachineJS = function(opt) {
         }
 
         if (opt.debug && destCount > 1) {
-            console.log("ERROR : More than one destination is possible.");
+            throw "ERROR : More than one destination state is possible.";
         } else if (d) {
-            this.currentState.outing();
+            this.currentState.ending();
             this.currentState = d;
             this.currentState.entering();
         }
